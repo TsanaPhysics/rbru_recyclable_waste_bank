@@ -208,10 +208,14 @@ $sampleTransactions = [
                     </div>
                 </div>
 
-                <div class="flex items-center space-x-6 text-sm font-medium">
+                <div class="flex items-center space-x-5 text-sm font-medium">
                     <a href="#about" class="text-emerald-100 hover:text-white transition">เกี่ยวกับโครงการ</a>
                     <a href="#prices" class="text-emerald-100 hover:text-white transition">ราคารับฝากวันนี้</a>
-                    <a href="#passbook" class="text-emerald-100 hover:text-white transition">สมุดบัญชีเงินฝาก</a>
+                    <a href="sdg_climate.php" class="text-amber-300 hover:text-amber-200 transition flex items-center gap-1.5 font-semibold">
+                        <i class="fa-solid fa-earth-americas text-emerald-300"></i>
+                        <span>SDG & Climate</span>
+                    </a>
+                    <a href="admin_backend.php" class="text-emerald-200 hover:text-white transition">ระบบหลังบ้าน</a>
                     <a href="station_pos.php" class="text-amber-300 hover:text-amber-200 font-semibold transition flex items-center gap-1.5 bg-emerald-950/60 px-3 py-1.5 rounded-lg border border-amber-400/30">
                         <i class="fa-solid fa-scale-balanced"></i>
                         <span>จุดรับฝาก POS (อาคาร 36)</span>
@@ -652,6 +656,12 @@ $sampleTransactions = [
                     <button onclick="openQrModal()" class="w-full bg-emerald-700 text-white py-3 rounded-xl font-semibold text-xs shadow flex items-center justify-center gap-2 font-heading">
                         <i class="fa-solid fa-qrcode"></i> แสดง Virtual Member Card
                     </button>
+                    <a href="sdg_climate.php" class="w-full block bg-emerald-50 hover:bg-emerald-100 text-emerald-800 py-3 rounded-xl font-bold text-xs shadow-sm transition font-heading border border-emerald-200">
+                        <i class="fa-solid fa-earth-americas mr-1 text-emerald-600"></i> เรียนรู้ SDG & Climate Change (ภาพ 3D Pixar)
+                    </a>
+                    <a href="admin_backend.php" class="w-full block bg-indigo-50 hover:bg-indigo-100 text-indigo-800 py-3 rounded-xl font-bold text-xs shadow-sm transition font-heading border border-indigo-200">
+                        <i class="fa-solid fa-boxes-stacked mr-1 text-indigo-600"></i> ระบบหลังบ้านและคลังขยะ (อาคาร 36)
+                    </a>
                     <a href="station_pos.php" class="w-full block bg-amber-400 hover:bg-amber-300 text-slate-900 py-3 rounded-xl font-bold text-xs shadow transition font-heading">
                         <i class="fa-solid fa-scale-balanced mr-1"></i> เข้าสู่หน้าจอเจ้าหน้าที่ (Station POS ชั่งน้ำหนัก)
                     </a>
@@ -663,6 +673,11 @@ $sampleTransactions = [
         </section>
 
     </main>
+
+    <!-- Global Modern Footer -->
+    <div class="hidden md:block">
+        <?php require_once __DIR__ . '/includes/footer.php'; ?>
+    </div>
 
     <!-- ========================================================================= -->
     <!-- MOBILE BOTTOM NAVIGATION BAR (เสมือน Native Application บนสมาร์ตโฟน)      -->

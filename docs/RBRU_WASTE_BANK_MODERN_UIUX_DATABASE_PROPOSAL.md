@@ -97,3 +97,4 @@ flowchart LR
 2. **Quick Win 2 (Camera Scanner):** เพิ่มระบบสแกน QR Code ผ่านกล้องเว็บแคม/แท็บเล็ตในหน้า `station_pos.php`
 3. **Quick Win 3 (Interactive Audio Cues):** เพิ่มเสียงสัญญาณ Beep & Haptic ตอนบันทึกชั่งน้ำหนักสำเร็จ
 4. **Backend Hardening:** เพิ่มตาราง `account_ledgers` ในฐานข้อมูลเพื่อความโปร่งใสทางการเงิน 100%
+
