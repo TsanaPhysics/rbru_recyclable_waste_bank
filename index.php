@@ -374,7 +374,7 @@ $sampleTransactions = [
                         </div>
                         <div>
                             <span class="text-[11px] font-semibold text-emerald-700 uppercase block">จุดบริการหลัก (Depot)</span>
-                            <h3 class="font-bold text-sm text-slate-900 font-heading">ศูนย์คัดแยกขยะกลาง (อาคาร 36)</h3>
+                            <h3 class="font-bold text-sm text-slate-900 font-heading">ศูนย์คัดแยกขยะกลาง (อาคาร 36 สำนักงานอธิการบดี)</h3>
                             <p class="text-xs text-slate-500 mt-0.5">เปิดทุกวันทำการ 08.30 - 16.30 น. (ตราชั่งใหญ่ 150 กก.)</p>
                         </div>
                     </div>

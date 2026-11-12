@@ -59,7 +59,7 @@ $wasteItems = [
                         <span class="text-xs bg-amber-400 text-slate-900 px-2 py-0.5 rounded-full font-semibold">จุดรับฝากชั่งน้ำหนัก</span>
                     </h1>
                     <p class="text-xs text-emerald-200">
-                        <i class="fa-solid fa-location-dot mr-1"></i>ศูนย์คัดแยกขยะกลาง (อาคาร 36 คณะวิทย์ฯ) • จนท. นายสมคิด สิ่งแวดล้อมดี
+                        <i class="fa-solid fa-location-dot mr-1"></i>ศูนย์คัดแยกขยะกลาง (อาคาร 36 สำนักงานอธิการบดี) • จนท. นายสมคิด สิ่งแวดล้อมดี
                     </p>
                 </div>
             </div>
