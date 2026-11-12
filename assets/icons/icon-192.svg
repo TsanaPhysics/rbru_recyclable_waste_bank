@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192" width="192" height="192">
+  <defs>
+    <linearGradient id="bg192" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#065f46" />
+      <stop offset="100%" stop-color="#047857" />
+    </linearGradient>
+  </defs>
+  <rect width="192" height="192" rx="48" fill="url(#bg192)" />
+  <circle cx="96" cy="96" r="70" fill="none" stroke="#6ee7b7" stroke-width="5" stroke-dasharray="10 6" opacity="0.4" />
+  <path d="M96 35 L70 80 L122 80 Z" fill="#34d399" stroke="#ffffff" stroke-width="4" />
+  <text x="96" y="142" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="18" fill="#fbbf24" text-anchor="middle" letter-spacing="2">RBRU</text>
+  <text x="96" y="162" font-family="system-ui, -apple-system, sans-serif" font-weight="600" font-size="10" fill="#a7f3d0" text-anchor="middle">WASTE BANK</text>
+</svg>
+

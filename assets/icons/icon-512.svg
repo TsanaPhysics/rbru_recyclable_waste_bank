@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#065f46" />
+      <stop offset="100%" stop-color="#047857" />
+    </linearGradient>
+    <linearGradient id="leaf" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#34d399" />
+      <stop offset="100%" stop-color="#10b981" />
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="128" fill="url(#bg)" />
+  <circle cx="256" cy="256" r="190" fill="none" stroke="#6ee7b7" stroke-width="12" stroke-dasharray="24 16" opacity="0.4" />
+  
+  <!-- Recycle Loop Arrows & Bank Vault Symbol -->
+  <g transform="translate(106, 106) scale(0.58)" fill="none" stroke="#ffffff" stroke-width="28" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M256 60 L180 180 L332 180 Z" fill="url(#leaf)" stroke="#ffffff" stroke-width="12" />
+    <path d="M110 380 L50 260 L170 330" />
+    <path d="M402 380 L462 260 L342 330" />
+    <path d="M190 440 L322 440" />
+  </g>
+  
+  <text x="256" y="380" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="44" fill="#fbbf24" text-anchor="middle" letter-spacing="3">RBRU</text>
+  <text x="256" y="425" font-family="system-ui, -apple-system, sans-serif" font-weight="600" font-size="24" fill="#a7f3d0" text-anchor="middle" letter-spacing="1">WASTE BANK</text>
+</svg>
+
