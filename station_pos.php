@@ -59,7 +59,7 @@ $wasteItems = [
                         <span class="text-xs bg-amber-400 text-slate-900 px-2 py-0.5 rounded-full font-semibold">จุดรับฝากชั่งน้ำหนัก</span>
                     </h1>
                     <p class="text-xs text-emerald-200">
-                        <i class="fa-solid fa-location-dot mr-1"></i>ศูนย์คัดแยกขยะกลาง (อาคาร 28) • จนท. นายสมคิด สิ่งแวดล้อมดี
+                        <i class="fa-solid fa-location-dot mr-1"></i>ศูนย์คัดแยกขยะกลาง (อาคาร 36 คณะวิทย์ฯ) • จนท. นายสมคิด สิ่งแวดล้อมดี
                     </p>
                 </div>
             </div>
@@ -280,7 +280,7 @@ $wasteItems = [
             <center>
                 <strong>มหาวิทยาลัยราชภัฏรำไพพรรณี</strong><br>
                 <strong>ธนาคารขยะรีไซเคิล (RBRU Waste Bank)</strong><br>
-                ศูนย์คัดแยกขยะกลาง (อาคาร 28)<br>
+                ศูนย์คัดแยกขยะกลาง (อาคาร 36)<br>
                 --------------------------------
             </center>
             <div id="p-txno">TX: -</div>
@@ -512,7 +512,7 @@ $wasteItems = [
             const payload = {
                 member_code: document.getElementById('memberInput').value,
                 member_name: 'นางสาวรักดี มีวินัย',
-                station_name: 'ศูนย์คัดแยกขยะกลาง (อาคาร 28)',
+                station_name: 'ศูนย์คัดแยกขยะกลาง (อาคาร 36)',
                 officer_name: 'นายสมคิด สิ่งแวดล้อมดี',
                 items: basket
             };
@@ -581,3 +581,4 @@ $wasteItems = [
     </script>
 </body>
 </html>
+

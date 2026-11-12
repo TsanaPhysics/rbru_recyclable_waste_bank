@@ -31,7 +31,7 @@ define('LINE_NOTIFY_CLIENT_SECRET', getenv('LINE_NOTIFY_CLIENT_SECRET') ?: '');
 
 // Hardware / Web Serial Scale Configuration
 define('SCALE_DEFAULT_BAUD_RATE', 9600);
-define('SCALE_DEFAULT_STATION', 'ศูนย์คัดแยกขยะกลาง (อาคาร 28)');
+define('SCALE_DEFAULT_STATION', 'ศูนย์คัดแยกขยะกลาง (อาคาร 36)');
 
 // UI Theme Colors
 define('COLOR_PRIMARY', '#059669'); // Emerald 600

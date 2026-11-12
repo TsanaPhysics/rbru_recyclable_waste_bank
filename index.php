@@ -76,7 +76,7 @@ $wasteCategories = [
 $sampleTransactions = [
     [
         'date' => '12 พ.ย. 2569 • 11:20 น.',
-        'station' => 'ศูนย์คัดแยกขยะกลาง (อาคาร 28)',
+        'station' => 'ศูนย์คัดแยกขยะกลาง (อาคาร 36)',
         'type' => 'ฝากขยะรีไซเคิล',
         'items' => 'ขวด PET 3.5 กก., ลังกระดาษ 5.0 กก.',
         'weight' => '8.50 กก.',
@@ -202,7 +202,7 @@ $sampleTransactions = [
                     <a href="#passbook" class="text-emerald-100 hover:text-white transition">สมุดบัญชีเงินฝาก</a>
                     <a href="station_pos.php" class="text-amber-300 hover:text-amber-200 font-semibold transition flex items-center gap-1.5 bg-emerald-950/60 px-3 py-1.5 rounded-lg border border-amber-400/30">
                         <i class="fa-solid fa-scale-balanced"></i>
-                        <span>จุดรับฝาก POS (อาคาร 28)</span>
+                        <span>จุดรับฝาก POS (อาคาร 36)</span>
                     </a>
                     
                     <button onclick="openQrModal()" class="bg-amber-400 hover:bg-amber-300 text-slate-900 px-5 py-2.5 rounded-xl font-semibold shadow-md transition transform hover:-translate-y-0.5 flex items-center gap-2">
@@ -374,7 +374,7 @@ $sampleTransactions = [
                         </div>
                         <div>
                             <span class="text-[11px] font-semibold text-emerald-700 uppercase block">จุดบริการหลัก (Depot)</span>
-                            <h3 class="font-bold text-sm text-slate-900 font-heading">ศูนย์คัดแยกขยะกลาง (อาคาร 28)</h3>
+                            <h3 class="font-bold text-sm text-slate-900 font-heading">ศูนย์คัดแยกขยะกลาง (อาคาร 36)</h3>
                             <p class="text-xs text-slate-500 mt-0.5">เปิดทุกวันทำการ 08.30 - 16.30 น. (ตราชั่งใหญ่ 150 กก.)</p>
                         </div>
                     </div>
