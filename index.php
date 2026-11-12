@@ -11,7 +11,19 @@ $currentUser = [
     'total_weight' => 38.60,
     'co2_reduced' => 56.42,
     'eco_points' => 380,
+    'eco_tier' => 'Eco Ranger',
+    'eco_tier_icon' => 'fa-shield-halved',
+    'tier_progress' => 77,
+    'trees_equivalent' => 8,
     'qr_token' => 'RBRU-QR-6614401001'
+];
+
+$facultyLeaderboard = [
+    ['rank' => 1, 'name' => 'คณะวิทยาศาสตร์และเทคโนโลยี', 'weight' => '420.5 กก.', 'co2' => '589 kg', 'trees' => 58, 'badge' => 'text-amber-500'],
+    ['rank' => 2, 'name' => 'คณะวิทยาการจัดการ', 'weight' => '345.2 กก.', 'co2' => '468 kg', 'trees' => 46, 'badge' => 'text-slate-400'],
+    ['rank' => 3, 'name' => 'คณะเทคโนโลยีการเกษตร', 'weight' => '280.0 กก.', 'co2' => '390 kg', 'trees' => 39, 'badge' => 'text-amber-700'],
+    ['rank' => 4, 'name' => 'คณะครุศาสตร์', 'weight' => '215.8 กก.', 'co2' => '302 kg', 'trees' => 30, 'badge' => 'text-slate-300'],
+    ['rank' => 5, 'name' => 'สำนักงานอธิการบดี (อาคาร 36)', 'weight' => '198.0 กก.', 'co2' => '277 kg', 'trees' => 27, 'badge' => 'text-slate-300'],
 ];
 
 $wasteCategories = [
@@ -263,14 +275,21 @@ $sampleTransactions = [
                     </div>
                     <div class="flex justify-between items-start mb-3">
                         <div>
+                            <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-950/60 border border-emerald-400/40 text-[10px] text-amber-300 font-semibold mb-1">
+                                <i class="fa-solid <?= $currentUser['eco_tier_icon'] ?>"></i>
+                                <span>ยศ: <?= $currentUser['eco_tier'] ?></span>
+                            </div>
                             <span class="text-xs text-emerald-200 block font-light">ยอดเงินคงเหลือสะสม</span>
                             <div class="text-3xl font-extrabold font-heading text-white tracking-tight mt-0.5">
                                 ฿ <?= number_format($currentUser['balance'], 2) ?>
                             </div>
                         </div>
-                        <span class="px-2.5 py-1 bg-white/20 backdrop-blur rounded-full text-[11px] font-medium text-emerald-100 flex items-center gap-1">
-                            <i class="fa-solid fa-coins text-amber-300"></i> <?= $currentUser['eco_points'] ?> แต้ม
-                        </span>
+                        <div class="text-right">
+                            <span class="px-2.5 py-1 bg-white/20 backdrop-blur rounded-full text-[11px] font-medium text-emerald-100 inline-flex items-center gap-1">
+                                <i class="fa-solid fa-coins text-amber-300"></i> <?= $currentUser['eco_points'] ?> แต้ม
+                            </span>
+                            <span class="text-[10px] text-emerald-200 block mt-1">🌳 เทียบเท่าต้นไม้ <strong><?= $currentUser['trees_equivalent'] ?></strong> ต้น</span>
+                        </div>
                     </div>
 
                     <div class="grid grid-cols-2 gap-2 pt-3 border-t border-emerald-500/40 text-xs">
@@ -428,6 +447,37 @@ $sampleTransactions = [
                         <div class="pt-2.5 mt-2 border-t border-slate-100 flex items-baseline justify-between">
                             <span class="text-xs font-bold text-emerald-800 font-heading"><?= $cat['price'] ?></span>
                             <span class="text-[10px] text-slate-500"><?= $cat['unit'] ?></span>
+                        </div>
+                    </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+
+            <!-- Green Campus Faculty Leaderboard -->
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8">
+                <div class="flex items-center justify-between mb-3">
+                    <div>
+                        <span class="text-xs font-bold text-emerald-700 uppercase tracking-wider block">UI GreenMetric Ranking</span>
+                        <h2 class="text-lg sm:text-2xl font-bold font-heading text-slate-900">อันดับการลดขยะแยกตามคณะ (Leaderboard)</h2>
+                    </div>
+                    <span class="text-xs bg-emerald-100 text-emerald-800 font-semibold px-2.5 py-1 rounded-md">ประจำเดือนนี้</span>
+                </div>
+
+                <div class="bg-white rounded-3xl p-4 sm:p-5 shadow-sm border border-slate-200 divide-y divide-slate-100">
+                    <?php foreach ($facultyLeaderboard as $fac): ?>
+                    <div class="py-3 flex items-center justify-between hover:bg-slate-50 transition px-2 rounded-xl">
+                        <div class="flex items-center space-x-3">
+                            <span class="w-7 h-7 rounded-full flex items-center justify-center font-black text-sm <?= $fac['badge'] ?> bg-slate-100">
+                                <?= $fac['rank'] ?>
+                            </span>
+                            <div>
+                                <h4 class="text-xs sm:text-sm font-bold text-slate-900 font-heading"><?= $fac['name'] ?></h4>
+                                <span class="text-[11px] text-slate-400">ปลูกต้นไม้สะสมเทียบเท่า <?= $fac['trees'] ?> ต้น</span>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <span class="text-xs sm:text-sm font-extrabold text-emerald-800 font-heading block"><?= $fac['weight'] ?></span>
+                            <span class="text-[10px] text-teal-600 font-medium">ลด CO₂: <?= $fac['co2'] ?></span>
                         </div>
                     </div>
                     <?php endforeach; ?>

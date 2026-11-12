@@ -96,11 +96,16 @@ $wasteItems = [
                 <div class="flex gap-2">
                     <div class="relative flex-grow">
                         <input type="text" id="memberInput" value="6614401001" placeholder="สแกน QR หรือพิมพ์รหัส นศ. / รหัสบุคลากร" 
-                               class="w-full pl-10 pr-4 py-2.5 text-sm rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-emerald-500 font-heading">
+                               class="w-full pl-10 pr-4 py-2.5 text-sm rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-emerald-500 font-heading"
+                               onkeydown="if(event.key==='Enter') lookupMember()">
                         <i class="fa-solid fa-qrcode absolute left-3.5 top-3.5 text-slate-400"></i>
                     </div>
-                    <button onclick="lookupMember()" class="bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-semibold px-4 py-2.5 rounded-xl transition font-heading">
+                    <button onclick="lookupMember()" class="bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-semibold px-4 py-2.5 rounded-xl transition font-heading shrink-0">
                         ค้นหา
+                    </button>
+                    <button onclick="openCameraScanner()" class="bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold px-3 py-2.5 rounded-xl transition font-heading flex items-center gap-1.5 shrink-0 shadow-sm">
+                        <i class="fa-solid fa-camera"></i>
+                        <span class="hidden sm:inline">เปิดกล้องสแกน</span>
                     </button>
                 </div>
 
@@ -271,6 +276,26 @@ $wasteItems = [
                     ทำรายการถัดไป
                 </button>
             </div>
+        </div>
+    </div>
+
+    <!-- MODAL: CAMERA QR SCANNER (สแกนผ่านกล้องแท็บเล็ต/มือถือโดยตรง) -->
+    <div id="cameraModal" class="fixed inset-0 bg-slate-900/90 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-sm w-full p-5 text-center shadow-2xl relative">
+            <button onclick="closeCameraScanner()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-50 text-indigo-800 text-xs font-semibold mb-3">
+                <i class="fa-solid fa-camera"></i> กล้องสแกน QR Code สมาชิก
+            </div>
+            <div class="relative bg-black rounded-2xl overflow-hidden aspect-square mb-3 flex items-center justify-center border-2 border-dashed border-indigo-400">
+                <video id="cameraVideo" autoplay playsinline class="w-full h-full object-cover"></video>
+                <div class="absolute inset-8 border-2 border-emerald-400 rounded-xl pointer-events-none animate-pulse"></div>
+            </div>
+            <p class="text-xs text-slate-500 mb-3">ส่องกรอบกล้องไปที่ Virtual QR บนหน้าจอมือถือของนักศึกษา</p>
+            <button onclick="simulateCameraScan()" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-2.5 rounded-xl text-xs font-heading">
+                จำลองผลการสแกนสำเร็จ (Test Scan)
+            </button>
         </div>
     </div>
 
@@ -542,6 +567,8 @@ $wasteItems = [
         let lastReceipt = null;
 
         function showSuccessModal(rc) {
+            playPosBeep('success');
+            triggerHaptic();
             lastReceipt = rc;
             document.getElementById('resTxNo').innerText = rc.transaction_no;
             document.getElementById('resMemName').innerText = rc.member_name;
@@ -576,7 +603,81 @@ $wasteItems = [
         }
 
         function lookupMember() {
+            playPosBeep('scan');
+            triggerHaptic();
             alert('ตรวจสอบพบสมาชิก: นางสาวรักดี มีวินัย (6614401001) พร้อมทำรายการ');
+        }
+
+        // Web Audio Synthesizer for High-Tech POS Cues
+        function playPosBeep(type = 'scan') {
+            try {
+                const AudioCtx = window.AudioContext || window.webkitAudioContext;
+                if (!AudioCtx) return;
+                const ctx = new AudioCtx();
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+
+                if (type === 'scan') {
+                    // Quick crisp beep for barcode scan
+                    osc.frequency.setValueAtTime(1750, ctx.currentTime);
+                    gain.gain.setValueAtTime(0.15, ctx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.08);
+                    osc.start();
+                    osc.stop(ctx.currentTime + 0.08);
+                } else if (type === 'success') {
+                    // Double pleasant chime for transaction completion
+                    osc.frequency.setValueAtTime(880, ctx.currentTime);
+                    osc.frequency.setValueAtTime(1320, ctx.currentTime + 0.1);
+                    gain.gain.setValueAtTime(0.2, ctx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.3);
+                    osc.start();
+                    osc.stop(ctx.currentTime + 0.3);
+                }
+            } catch (e) {
+                console.warn('Web Audio not allowed or supported:', e);
+            }
+        }
+
+        // Tactile Haptic Vibration for Mobile Devices
+        function triggerHaptic() {
+            if ("vibrate" in navigator) {
+                navigator.vibrate([60, 40, 60]);
+            }
+        }
+
+        // Camera QR Scanner Functions
+        let cameraStream = null;
+
+        async function openCameraScanner() {
+            document.getElementById('cameraModal').classList.remove('hidden');
+            const video = document.getElementById('cameraVideo');
+            try {
+                cameraStream = await navigator.mediaDevices.getUserMedia({
+                    video: { facingMode: 'environment' }
+                });
+                video.srcObject = cameraStream;
+            } catch (err) {
+                console.warn('Camera access denied or unavailable:', err);
+            }
+        }
+
+        function closeCameraScanner() {
+            if (cameraStream) {
+                cameraStream.getTracks().forEach(track => track.stop());
+                cameraStream = null;
+            }
+            document.getElementById('cameraModal').classList.add('hidden');
+        }
+
+        function simulateCameraScan() {
+            closeCameraScanner();
+            playPosBeep('scan');
+            triggerHaptic();
+            document.getElementById('memberInput').value = "6614401001";
+            lookupMember();
         }
     </script>
 </body>

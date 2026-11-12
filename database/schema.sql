@@ -40,10 +40,28 @@ CREATE TABLE IF NOT EXISTS `accounts` (
     `total_weight_kg` DECIMAL(12, 3) NOT NULL DEFAULT 0.000 COMMENT 'น้ำหนักขยะสะสมรวม (กิโลกรัม)',
     `total_co2_reduced` DECIMAL(12, 3) NOT NULL DEFAULT 0.000 COMMENT 'ปริมาณ CO2 สะสมที่ช่วยลด (kgCO2eq)',
     `eco_points` INT NOT NULL DEFAULT 0 COMMENT 'คะแนนกรีนพอยท์สะสม',
+    `eco_tier` ENUM('SEEDLING', 'RANGER', 'GUARDIAN', 'CHAMPION') NOT NULL DEFAULT 'SEEDLING' COMMENT 'ระดับยศสิ่งแวดล้อม',
     `status` ENUM('ACTIVE', 'SUSPENDED', 'CLOSED') NOT NULL DEFAULT 'ACTIVE',
     `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `updated_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (`user_id`) REFERENCES `users`(`user_id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ---------------------------------------------------------------------
+-- 2.1 Table: account_ledgers (บัญชีแยกประเภทคู่ / Double-Entry Audit Trail)
+-- ---------------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS `account_ledgers` (
+    `ledger_id` BIGINT AUTO_INCREMENT PRIMARY KEY,
+    `account_id` INT NOT NULL,
+    `transaction_id` INT NULL,
+    `entry_type` ENUM('CREDIT_DEPOSIT', 'DEBIT_WITHDRAW', 'ADJUSTMENT', 'REWARD_REDEEM') NOT NULL,
+    `amount` DECIMAL(12, 2) NOT NULL COMMENT 'จำนวนเงินในรายการนี้',
+    `balance_before` DECIMAL(12, 2) NOT NULL COMMENT 'ยอดคงเหลือก่อนทำรายการ',
+    `balance_after` DECIMAL(12, 2) NOT NULL COMMENT 'ยอดคงเหลือหลังทำรายการ',
+    `description` VARCHAR(255) NOT NULL,
+    `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (`account_id`) REFERENCES `accounts`(`account_id`) ON DELETE CASCADE,
+    INDEX `idx_ledger_acc_date` (`account_id`, `created_at`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ---------------------------------------------------------------------
@@ -111,7 +129,9 @@ CREATE TABLE IF NOT EXISTS `transactions` (
     FOREIGN KEY (`user_id`) REFERENCES `users`(`user_id`) ON DELETE CASCADE,
     FOREIGN KEY (`account_id`) REFERENCES `accounts`(`account_id`) ON DELETE CASCADE,
     FOREIGN KEY (`station_id`) REFERENCES `stations`(`station_id`) ON DELETE SET NULL,
-    FOREIGN KEY (`officer_id`) REFERENCES `users`(`user_id`) ON DELETE SET NULL
+    FOREIGN KEY (`officer_id`) REFERENCES `users`(`user_id`) ON DELETE SET NULL,
+    INDEX `idx_tx_date_user` (`transaction_date`, `user_id`),
+    INDEX `idx_tx_station_date` (`station_id`, `transaction_date`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ---------------------------------------------------------------------

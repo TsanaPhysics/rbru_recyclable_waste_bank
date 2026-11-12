@@ -210,6 +210,25 @@ try {
         ':acc_id' => $user['account_id']
     ]);
 
+    // 5.1 Insert Double-Entry Ledger Audit Trail (ป้องกันข้อผิดพลาดทางบัญชี)
+    $stmtLedger = $pdo->prepare("
+        INSERT INTO account_ledgers (
+            account_id, transaction_id, entry_type, amount,
+            balance_before, balance_after, description
+        ) VALUES (
+            :acc_id, :tx_id, 'CREDIT_DEPOSIT', :amount,
+            :before, :after, :desc
+        )
+    ");
+    $stmtLedger->execute([
+        ':acc_id' => $user['account_id'],
+        ':tx_id' => $txId,
+        ':amount' => $totalAmount,
+        ':before' => $user['current_balance'],
+        ':after' => $newBalance,
+        ':desc' => 'ฝากขยะรีไซเคิล ณ ' . $stationName . ' รวม ' . number_format($totalWeight, 2) . ' กก.'
+    ]);
+
     $pdo->commit();
 
     // 6. Build Receipt & Trigger LINE Notification
