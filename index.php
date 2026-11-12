@@ -396,7 +396,7 @@ $sampleTransactions = [
                         </div>
                         <div>
                             <span class="text-[11px] font-semibold text-purple-700 uppercase block">จุดบริการคณะ</span>
-                            <h3 class="font-bold text-sm text-slate-900 font-heading">ลานหน้าอาคาร 36 คณะวิทย์ฯ</h3>
+                            <h3 class="font-bold text-sm text-slate-900 font-heading">ลานหน้าอาคาร 40 คณะวิทย์ฯ</h3>
                             <p class="text-xs text-slate-500 mt-0.5">เปิดวันศุกร์ 09.00 - 14.00 น.</p>
                         </div>
                     </div>

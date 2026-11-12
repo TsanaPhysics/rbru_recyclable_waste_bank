@@ -179,7 +179,7 @@ ON DUPLICATE KEY UPDATE `item_name` = VALUES(`item_name`), `buy_price` = VALUES(
 INSERT INTO `stations` (`station_id`, `station_name`, `location_detail`, `operating_hours`) VALUES
 (1, 'ศูนย์คัดแยกขยะกลาง มรภ.รำไพพรรณี', 'อาคาร 36 คณะวิทยาศาสตร์และเทคโนโลยี', 'วันจันทร์ - วันศุกร์ เวลา 08.30 - 16.30 น.'),
 (2, 'จุดบริการกองพัฒนานักศึกษา', 'อาคารกิจกรรมนักศึกษา ชั้น 1', 'วันพุธ และ วันพฤหัสบดี เวลา 11.30 - 15.30 น.'),
-(3, 'จุดบริการคณะวิทยาศาสตร์และเทคโนโลยี', 'ลานหน้าอาคาร 36', 'วันศุกร์ เวลา 09.00 - 14.00 น.')
+(3, 'จุดบริการคณะวิทยาศาสตร์และเทคโนโลยี', 'ลานหน้าอาคาร 40', 'วันศุกร์ เวลา 09.00 - 14.00 น.')
 ON DUPLICATE KEY UPDATE `station_name` = VALUES(`station_name`);
 
 -- 4. บัญชีผู้ใช้เริ่มต้น (Admin, Officer, Sample Student, Sample Department)
