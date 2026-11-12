@@ -20,6 +20,8 @@ CREATE TABLE IF NOT EXISTS `users` (
     `user_type` ENUM('STUDENT', 'STAFF', 'DEPARTMENT', 'STATION_OFFICER', 'ADMIN') NOT NULL DEFAULT 'STUDENT',
     `faculty_department` VARCHAR(150) NULL COMMENT 'คณะ/สำนัก/กอง/สาขาวิชา',
     `qr_token` VARCHAR(100) NOT NULL UNIQUE COMMENT 'โทเค็นสำหรับสแกน Virtual QR Member Card',
+    `line_user_id` VARCHAR(100) NULL COMMENT 'LINE User ID (Uxxxxxxxx) สำหรับส่ง Flex Message',
+    `line_notify_token` VARCHAR(150) NULL COMMENT 'LINE Notify Token สำหรับส่งสลิปผ่านกลุ่ม/บุคคล',
     `is_active` TINYINT(1) NOT NULL DEFAULT 1,
     `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `updated_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP

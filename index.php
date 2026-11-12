@@ -200,7 +200,10 @@ $sampleTransactions = [
                     <a href="#about" class="text-emerald-100 hover:text-white transition">เกี่ยวกับโครงการ</a>
                     <a href="#prices" class="text-emerald-100 hover:text-white transition">ราคารับฝากวันนี้</a>
                     <a href="#passbook" class="text-emerald-100 hover:text-white transition">สมุดบัญชีเงินฝาก</a>
-                    <a href="#metrics" class="text-emerald-100 hover:text-white transition">สถิติคาร์บอน</a>
+                    <a href="station_pos.php" class="text-amber-300 hover:text-amber-200 font-semibold transition flex items-center gap-1.5 bg-emerald-950/60 px-3 py-1.5 rounded-lg border border-amber-400/30">
+                        <i class="fa-solid fa-scale-balanced"></i>
+                        <span>จุดรับฝาก POS (อาคาร 28)</span>
+                    </a>
                     
                     <button onclick="openQrModal()" class="bg-amber-400 hover:bg-amber-300 text-slate-900 px-5 py-2.5 rounded-xl font-semibold shadow-md transition transform hover:-translate-y-0.5 flex items-center gap-2">
                         <i class="fa-solid fa-qrcode"></i>
@@ -599,6 +602,9 @@ $sampleTransactions = [
                     <button onclick="openQrModal()" class="w-full bg-emerald-700 text-white py-3 rounded-xl font-semibold text-xs shadow flex items-center justify-center gap-2 font-heading">
                         <i class="fa-solid fa-qrcode"></i> แสดง Virtual Member Card
                     </button>
+                    <a href="station_pos.php" class="w-full block bg-amber-400 hover:bg-amber-300 text-slate-900 py-3 rounded-xl font-bold text-xs shadow transition font-heading">
+                        <i class="fa-solid fa-scale-balanced mr-1"></i> เข้าสู่หน้าจอเจ้าหน้าที่ (Station POS ชั่งน้ำหนัก)
+                    </a>
                     <a href="login.php?logout=1" class="w-full block bg-slate-100 hover:bg-slate-200 text-slate-700 py-3 rounded-xl font-semibold text-xs transition font-heading">
                         <i class="fa-solid fa-arrow-right-from-bracket mr-1"></i> ออกจากระบบ
                     </a>
